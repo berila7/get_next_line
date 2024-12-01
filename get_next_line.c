@@ -110,12 +110,3 @@ static char	*ft_strchr(char *s, int c)
 		return ((char *) &s[i]);
 	return (NULL);
 }
-
-int main()
-{
-	int fd;
-
-	fd = open("tst.txt", O_RDONLY);
-
-	printf ("%s", get_next_line(fd));
-}
