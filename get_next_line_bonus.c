@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mberila <mberila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/28 11:02:42 by mberila           #+#    #+#             */
-/*   Updated: 2024/12/08 17:19:09 by mberila          ###   ########.fr       */
+/*   Created: 2024/12/08 11:47:24 by mberila           #+#    #+#             */
+/*   Updated: 2024/12/08 17:17:34 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 static char	*configure_line(char *line)
 {
@@ -63,27 +63,27 @@ static char	*get_line(int fd, char *remainder, char *buffer)
 
 char	*get_next_line(int fd)
 {
-	static char	*remainder;
+	static char	*remainder[FD_MAX];
 	char		*line;
 	char		*buffer;
 
 	buffer = NULL;
-	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
+	if (fd < 0 || BUFFER_SIZE <= 0 || fd > FD_MAX || read(fd, 0, 0) < 0)
 	{
-		free(remainder);
+		free(remainder[fd]);
 		free(buffer);
-		remainder = NULL;
+		remainder[fd] = NULL;
 		buffer = NULL;
 		return (NULL);
 	}
 	buffer = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (!buffer)
 		return (NULL);
-	line = get_line(fd, remainder, buffer);
+	line = get_line(fd, remainder[fd], buffer);
 	free(buffer);
 	buffer = NULL;
 	if (!line)
 		return (NULL);
-	remainder = configure_line(line);
+	remainder[fd] = configure_line(line);
 	return (line);
 }

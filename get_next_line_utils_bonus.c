@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mberila <mberila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/28 11:03:25 by mberila           #+#    #+#             */
-/*   Updated: 2024/12/08 17:19:25 by mberila          ###   ########.fr       */
+/*   Created: 2024/12/08 11:54:41 by mberila           #+#    #+#             */
+/*   Updated: 2024/12/08 17:18:43 by mberila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 int	find_new_line(char *str)
 {
